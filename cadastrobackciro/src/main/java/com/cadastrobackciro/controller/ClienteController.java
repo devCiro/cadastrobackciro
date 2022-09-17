@@ -30,7 +30,7 @@ public class ClienteController {
 
     @PostMapping("salvar")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Cliente> salvar(@RequestBody @Valid Cliente cliente) {
+    public ResponseEntity<Cliente> salvar(@RequestBody Cliente cliente) {
         return ResponseEntity.ok(clienteRepository.save(cliente));
     }
 
@@ -52,8 +52,8 @@ public class ClienteController {
     @PutMapping("/alterar/{id}")
     public void atualizar( @PathVariable Long id, @RequestBody @Valid Cliente clientes) {
         clienteRepository.findById(id).map( cliente -> {
-                    cliente.setNome(clientes.getNome());
-                    cliente.setCpf(clientes.getCpf());
+                    cliente.setLogin(clientes.getLogin());
+                    cliente.setPassword(clientes.getPassword());
                     return clienteRepository.save(cliente);
                 })
                 .orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encotrado"));

@@ -23,14 +23,11 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 100)
-    @NotEmpty(message = "{campo.nome.obrigatorio}")
-    private String nome;
+    @Column(name = "LOGIN", nullable = false, length = 100)
+    private String login;
 
-    @Column(nullable = false, length = 11)
-    @NotNull(message = "{campo.cpf.obrigatorio}")
-    @CPF(message = "{campo.cpf.invalido}")
-    private String cpf;
+    @Column(name = "PASSWORD", nullable = false, length = 11)
+    private String password;
 
     @Column(name = "data_cadastro", updatable = false)
     @JsonFormat(pattern = "dd/MM/yyyy")
