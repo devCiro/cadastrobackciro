@@ -53,6 +53,7 @@ public class ClienteController {
     public void atualizar( @PathVariable Long id, @RequestBody @Valid Cliente clientes) {
         clienteRepository.findById(id).map( cliente -> {
                     cliente.setLogin(clientes.getLogin());
+                    cliente.setEmail(clientes.getEmail());
                     cliente.setPassword(clientes.getPassword());
                     return clienteRepository.save(cliente);
                 })

@@ -6,10 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @Entity
@@ -17,19 +15,23 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "CLIENTE")
 public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "LOGIN", nullable = false, length = 100)
+    @Column(name = "NOME", nullable = false, length = 100)
     private String login;
 
-    @Column(name = "PASSWORD", nullable = false, length = 11)
+    @Column(name = "EMAIL", nullable = false, length = 100)
+    private String email;
+
+    @Column(name = "PASSWORD", nullable = false)
     private String password;
 
-    @Column(name = "data_cadastro", updatable = false)
+    @Column(name = "DATA_CADASTRO", updatable = false)
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataCadastro;
 
