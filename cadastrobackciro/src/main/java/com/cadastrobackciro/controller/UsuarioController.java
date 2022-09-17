@@ -19,8 +19,8 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/cliente")
-public class ClienteController {
+@RequestMapping("/USUARIO")
+public class UsuarioController {
 
     private final ClienteRepository clienteRepository;
 
