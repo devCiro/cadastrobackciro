@@ -24,26 +24,26 @@ public class ClienteController {
 
     private final ClienteRepository clienteRepository;
 
-    @PreAuthorize("hasAnyRole('PERMISSAO_USER', 'PERMISSAO_ADMIN')")
+//    @PreAuthorize("hasAnyRole('PERMISSAO_USER', 'PERMISSAO_ADMIN')")
     @GetMapping("/buscarTodos")
     public List<Cliente> buscarTodos() {
         return clienteRepository.findAll();
     }
 
-    @PreAuthorize("hasAnyRole('PERMISSAO_USER', 'PERMISSAO_ADMIN')")
+//    @PreAuthorize("hasAnyRole('PERMISSAO_USER', 'PERMISSAO_ADMIN')")
     @GetMapping("/buscar/{id}")
     public ResponseEntity<Optional<Cliente>> buscarPorId(@PathVariable Long id) {
         Optional<Cliente> cliente = clienteRepository.findById(id);
         return ResponseEntity.ok(cliente);
     }
-    @PreAuthorize("hasRole('PERMISSAO_ADMIN')")
+//    @PreAuthorize("hasRole('PERMISSAO_ADMIN')")
     @PostMapping("salvar")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Cliente> salvar(@RequestBody Cliente cliente) {
         return ResponseEntity.ok(clienteRepository.save(cliente));
     }
 
-    @PreAuthorize("hasRole('PERMISSAO_ADMIN')")
+//    @PreAuthorize("hasRole('PERMISSAO_ADMIN')")
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<Map<String, Boolean>> deletar(@PathVariable Long id) throws ResourceNotFoundException {
         Cliente cliente = clienteRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Não existe usuário com esse ID : " + id));
@@ -52,7 +52,7 @@ public class ClienteController {
         result.put("eliminar", Boolean.TRUE);
         return ResponseEntity.ok().body(result);
     }
-    @PreAuthorize("hasRole('PERMISSAO_ADMIN')")
+//    @PreAuthorize("hasRole('PERMISSAO_ADMIN')")
     @PutMapping("/alterar/{id}")
     public void atualizar( @PathVariable Long id, @RequestBody @Valid Cliente clientes) {
         clienteRepository.findById(id).map( cliente -> {

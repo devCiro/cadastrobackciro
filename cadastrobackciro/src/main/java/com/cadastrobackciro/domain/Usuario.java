@@ -6,14 +6,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "USUARIO")
+@Table(name = "TB_USER")
 public class Usuario implements UserDetails {
 
     @Id
@@ -26,15 +25,15 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private String password;
 
-//    @ManyToMany
-//    @JoinTable(name = "USUARIO_PERMISSAO",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "role_id"))
-//    private List<Roles> roles;
+    @ManyToMany
+    @JoinTable(name = "TB_USERS_ROLES",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<RoleModel> roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return this.roles;
     }
 
 

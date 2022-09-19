@@ -1,6 +1,6 @@
 package com.cadastrobackciro.domain;
 
-import com.cadastrobackciro.enums.Permissao;
+import com.cadastrobackciro.enums.RoleName;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -9,8 +9,8 @@ import java.io.Serializable;
 
 @Entity
 @Data
-@Table(name = "PERMISSAO")
-public class Roles implements GrantedAuthority, Serializable {
+@Table(name = "TB_ROLE")
+public class RoleModel implements GrantedAuthority, Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -19,10 +19,10 @@ public class Roles implements GrantedAuthority, Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, unique = true)
-    private Permissao permissao;
+    private RoleName roleName;
 
     @Override
     public String getAuthority() {
-        return this.permissao.toString();
+        return this.roleName.toString();
     }
 }
